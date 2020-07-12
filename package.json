@@ -1,0 +1,11 @@
+{
+  "name": "Premium_League_Visualizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/maegatro/Premium_League_Visualizer.git",
+  "author": "maegatro <shuntaromaekawa@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parser": "^2.3.3"
+  }
+}

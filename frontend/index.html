@@ -12,10 +12,31 @@
       <p id="content">
         プレミアリーグのシーズン毎/チーム毎のデータをグラフィックに可視化します
       </p>
+      <div id="cts1"></div>
       <canvas id="myChart" width="200" height="200"></canvas>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     </div>
     <script>
+      //   var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
+      //   var data_csv = req.open("get", "./data/season-1819_csv.csv", true); // アクセスするファイルを指定
+      //   console.log(data_csv);
+      const xhr = new XMLHttpRequest();
+      var data;
+      window.onload = function onLoad() {
+        xhr.open("GET", "../data/season-1819_csv.csv", false); // GETでローカルファイルを開く
+        xhr.onload = () => {
+          data = xhr.responseText;
+        };
+        xhr.onerror = () => {
+          console.log("error!");
+        };
+
+        xhr.send();
+
+        cts1 = document.getElementById("cts1");
+        cts1.innerText = data;
+      };
+
       var ctx = document.getElementById("myChart").getContext("2d");
       var myChart = new Chart(ctx, {
         type: "bar",
