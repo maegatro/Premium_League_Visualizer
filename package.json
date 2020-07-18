@@ -6,6 +6,8 @@
   "author": "maegatro <shuntaromaekawa@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "csv-parser": "^2.3.3"
+    "cors": "^2.8.5",
+    "csv-parser": "^2.3.3",
+    "express": "^4.17.1"
   }
 }

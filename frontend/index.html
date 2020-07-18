@@ -20,22 +20,60 @@
       //   var req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
       //   var data_csv = req.open("get", "./data/season-1819_csv.csv", true); // アクセスするファイルを指定
       //   console.log(data_csv);
-      const xhr = new XMLHttpRequest();
-      var data;
-      window.onload = function onLoad() {
-        xhr.open("GET", "../data/season-1819_csv.csv", false); // GETでローカルファイルを開く
-        xhr.onload = () => {
-          data = xhr.responseText;
-        };
-        xhr.onerror = () => {
-          console.log("error!");
-        };
+      // const xhr = new XMLHttpRequest();
+      // var data;
+      // window.onload = function onLoad() {
+      //   xhr.open("GET", "../data/season-1819_csv.csv", false); // GETでローカルファイルを開く
+      //   xhr.onload = () => {
+      //     data = xhr.responseText;
+      //   };
+      //   xhr.onerror = () => {
+      //     console.log("error!");
+      //   };
 
-        xhr.send();
+      //   xhr.send();
 
-        cts1 = document.getElementById("cts1");
-        cts1.innerText = data;
-      };
+      //   cts1 = document.getElementById("cts1");
+      //   cts1.innerText = data;
+      // };
+      const decoder = new TextDecoder("utf-8");
+      fetch("https://api-football-v1.p.rapidapi.com/v2/fixtures/league/5", {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "3a1904ae82mshb3641cc0198f486p1a8c00jsne075412fd1fd",
+        },
+      })
+        .then((response) => {
+          response.body
+            .getReader()
+            .read()
+            .then(({ value, done }) => {
+              console.log(decoder.decode(value));
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // fetch(
+      //   "https://api-football-v1.p.rapidapi.com/v2/fixtures/league/4?timezone=Europe%252FLondon",
+      //   {
+      //     method: "GET",
+      //     headers: {
+      //       "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+      //       "x-rapidapi-key":
+      //         "3a1904ae82mshb3641cc0198f486p1a8c00jsne075412fd1fd",
+      //     },
+      //   }
+      // )
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
 
       var ctx = document.getElementById("myChart").getContext("2d");
       var myChart = new Chart(ctx, {

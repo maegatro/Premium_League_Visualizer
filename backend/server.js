@@ -1,8 +1,12 @@
 const csv = require("csv-parser");
-// const fs = require("fs");
+const express = require("express");
 const results = [];
+const cors = require("cors");
 
 const fs = require("fs").promises;
+
+const app = express();
+app.use(cors({ origin: true, credentials: true }));
 
 /**
  * ファイルの内容を表示
@@ -47,15 +51,6 @@ displayFile("../data/season-1819_csv.csv").then((response) =>
   })
 );
 
-// function getdata(num) {
-//   return num * num;
-// }
-// getdata(2); //output 4
-
-const getdata = (num) => num * num;
-
-let get = getdata(2);
-console.log(get);
 // サーバを待ち受け状態にする
 // 第1引数: ポート番号
 // 第2引数: IPアドレス
